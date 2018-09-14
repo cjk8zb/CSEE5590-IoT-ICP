@@ -1,0 +1,236 @@
+[
+    {
+        "id": "ab4ab18f.5ea9c",
+        "type": "tab",
+        "label": "Tweather",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "b4f1f237.740c6",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "59b2f909.8acd58",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Weather",
+        "icon": "wi-wu-sunny",
+        "order": 1
+    },
+    {
+        "id": "8cd78915.47f9b8",
+        "type": "ui_group",
+        "z": "",
+        "name": "Current Weather",
+        "tab": "59b2f909.8acd58",
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "6cc5fc6e.30b8a4",
+        "type": "twitter-credentials",
+        "z": "",
+        "screen_name": "cjk8zb"
+    },
+    {
+        "id": "2390a706.1ac498",
+        "type": "inject",
+        "z": "ab4ab18f.5ea9c",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 100,
+        "y": 60,
+        "wires": [
+            [
+                "4fd8001c.4ec4e"
+            ]
+        ]
+    },
+    {
+        "id": "b9f4fdac.6af6d",
+        "type": "debug",
+        "z": "ab4ab18f.5ea9c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 390,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "4fd8001c.4ec4e",
+        "type": "openweathermap",
+        "z": "ab4ab18f.5ea9c",
+        "name": "",
+        "wtype": "current",
+        "lon": "",
+        "lat": "",
+        "city": "Kansas City, MO",
+        "country": "USA",
+        "language": "en",
+        "x": 190,
+        "y": 240,
+        "wires": [
+            [
+                "b9f4fdac.6af6d",
+                "773be1f1.93ea",
+                "89e66f.5dc3999"
+            ]
+        ]
+    },
+    {
+        "id": "773be1f1.93ea",
+        "type": "ui_text",
+        "z": "ab4ab18f.5ea9c",
+        "group": "8cd78915.47f9b8",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Temp",
+        "format": "{{msg.payload.description}}",
+        "layout": "row-spread",
+        "x": 490,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "cfaa314f.8b36d",
+        "type": "twitter out",
+        "z": "ab4ab18f.5ea9c",
+        "twitter": "6cc5fc6e.30b8a4",
+        "name": "Tweet",
+        "x": 470,
+        "y": 500,
+        "wires": [],
+        "inputLabels": [
+            "msg.payload.description"
+        ]
+    },
+    {
+        "id": "89e66f.5dc3999",
+        "type": "function",
+        "z": "ab4ab18f.5ea9c",
+        "name": "Create Tweet Message",
+        "func": "msg.payload = \"#KCWeather \" + msg.payload.description + \"!!!☀️🔥💦\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 220,
+        "y": 580,
+        "wires": [
+            [
+                "f79c8d54.9c0fe",
+                "cfaa314f.8b36d"
+            ]
+        ]
+    },
+    {
+        "id": "f79c8d54.9c0fe",
+        "type": "e-mail",
+        "z": "ab4ab18f.5ea9c",
+        "server": "smtp.gmail.com",
+        "port": "465",
+        "secure": true,
+        "name": "cjk8zb@gmail.com",
+        "dname": "GMail",
+        "x": 390,
+        "y": 400,
+        "wires": []
+    }
+]
